@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class CreateTodo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todo_description: '',
-            todo_responsible: '',
-            todo_priority: '',
-            todo_completed: false
+            description: '',
+            responsible: '',
+            priority: '',
+            completed: false
         };
         this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
         this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
@@ -17,34 +18,46 @@ export default class CreateTodo extends Component {
 
     onChangeTodoDescription(e) {
         this.setState({
-            todo_description: e.target.value
+            description: e.target.value
         });
     }
 
     onChangeTodoResponsible(e) {
         this.setState({
-            todo_responsible: e.target.value
+            responsible: e.target.value
         });
     }
 
     onChangeTodoPriority(e) {
         this.setState({
-            todo_priority: e.target.value
+            priority: e.target.value
         });
     }
 
     onSubmit(e) {
         e.preventDefault();
         console.log(`Form submitted`);
-        console.log(`Todo Description:  ${this.state.todo_description}`);
-        console.log(`Todo Responsible:  ${this.state.todo_responsible}`);
-        console.log(`Todo Priority:  ${this.state.todo_priority}`);
+        console.log(`Todo Description:  ${this.state.description}`);
+        console.log(`Todo Responsible:  ${this.state.responsible}`);
+        console.log(`Todo Priority:  ${this.state.priority}`);
+
+        const newTodo = {
+            description: this.state.description,
+            responsible: this.state.responsible,
+            priority: this.state.priority,
+            completed: this.state.completed
+        };
+
+        // post data to server
+        console.log(`${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/todos/add`);
+        axios.post(`http://localhost:4000/todos/add`, newTodo)
+            .then(response => console.log(response.data));
 
         this.setState({
-            todo_description: '',
-            todo_responsible: '',
-            todo_priority: '',
-            todo_completed: false
+            description: '',
+            responsible: '',
+            priority: '',
+            completed: false
         });
     }
 
@@ -57,7 +70,7 @@ export default class CreateTodo extends Component {
                         <label>Description: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.todo_description}
+                                value={this.state.description}
                                 onChange={this.onChangeTodoDescription}
                                 />    
                     </div>
@@ -65,7 +78,7 @@ export default class CreateTodo extends Component {
                         <label>Responsible: </label>
                         <input  type="text"
                                 className="form-control"
-                                value={this.state.todo_responsible}
+                                value={this.state.responsible}
                                 onChange={this.onChangeTodoResponsible}
                                 />    
                     </div>
@@ -76,7 +89,7 @@ export default class CreateTodo extends Component {
                                     name="priorityOptions"
                                     id="priorityLow"
                                     value="Low"
-                                    checked={this.state.todo_priority==='Low'}
+                                    checked={this.state.priority==='Low'}
                                     onChange={this.onChangeTodoPriority}
                                     />
                             <label className="form-check-label">Low</label>
@@ -89,7 +102,7 @@ export default class CreateTodo extends Component {
                                     name="priorityOptions"
                                     id="priorityMedium"
                                     value="Medium"
-                                    checked={this.state.todo_priority==='Medium'}
+                                    checked={this.state.priority==='Medium'}
                                     onChange={this.onChangeTodoPriority}
                                     />
                             <label className="form-check-label">Medium</label>
@@ -102,7 +115,7 @@ export default class CreateTodo extends Component {
                                     name="priorityOptions"
                                     id="priorityHigh"
                                     value="High"
-                                    checked={this.state.todo_priority==='High'}
+                                    checked={this.state.priority==='High'}
                                     onChange={this.onChangeTodoPriority}
                                     />
                             <label className="form-check-label">High</label>
