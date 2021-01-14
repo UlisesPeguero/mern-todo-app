@@ -10,10 +10,27 @@ export default class CreateTodo extends Component {
             priority: '',
             completed: false
         };
+        this.edit = false;
         this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
         this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
         this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        const {id} = this.props.match.params;
+
+        if(id) {
+            axios.get(`http://localhost:4000/todos/${id}`)
+            .then(response => {
+                this.setState(response.data);
+            })         
+            .catch((error) => console.log(error));
+            this.edit = true;
+            this.setState({
+                id: id
+            });
+        } 
     }
 
     onChangeTodoDescription(e) {
@@ -49,22 +66,27 @@ export default class CreateTodo extends Component {
         };
 
         // post data to server
-        console.log(`${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/todos/add`);
-        axios.post(`http://localhost:4000/todos/add`, newTodo)
-            .then(response => console.log(response.data));
+        if(!this.edit) {
+            console.log(`${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/todos/add`);
+            axios.post(`http://localhost:4000/todos/add`, newTodo)
+                .then(response => console.log(response.data));
 
-        this.setState({
-            description: '',
-            responsible: '',
-            priority: '',
-            completed: false
-        });
+            this.setState({
+                description: '',
+                responsible: '',
+                priority: '',
+                completed: false
+            });
+        } else {
+            axios.post(`http://localhost:4000/todos/update/${this.state.id}`, newTodo)
+            .then(response => console.log(response.data));
+        }
     }
 
     render() {
         return (
             <div style={{marginTop: 10}}>
-                <h3> Create new Todo </h3>
+                <h3> {this.edit ? 'Edit Todo': 'Create new Todo'} </h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Description: </label>
@@ -122,7 +144,7 @@ export default class CreateTodo extends Component {
                         </div>    
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create Todo" className="btn btn-primary"/>
+                        <input type="submit" value={this.edit ? 'Save': 'Create'} className="btn btn-primary"/>
                     </div>
                 </form>
             </div>
