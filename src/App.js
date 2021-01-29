@@ -4,9 +4,7 @@ import { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import CreateTodo from './components/create-todo.component';
-//import EditTodo from './components/edit-todo.component';
 import TodosList from './components/todos-list.component';
-
 
 class App extends Component {
   render() {
@@ -21,7 +19,7 @@ class App extends Component {
                   <Link to="/" className="nav-link">Todos</Link>
                 </li>
                 <li className="navbar-item">
-                  <Link to="/create" className="nav-link">Create Todo</Link>
+                  <Link to="/new" className="nav-link">Create Todo</Link>
                 </li> 
               </ul>
             </div>
@@ -29,7 +27,7 @@ class App extends Component {
           <br/>
           <Route path="/" exact component={TodosList} />
           <Route path="/edit/:id" component={CreateTodo} />
-          <Route path="/create" component={CreateTodo} />
+          <Route path="/new" component={CreateTodo} />
         </div>
       </Router>
     );

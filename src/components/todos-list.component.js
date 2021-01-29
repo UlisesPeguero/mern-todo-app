@@ -2,18 +2,31 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Todo = props => (
-    <tr>
-        <td>{props.todo.description}</td>
-        <td>{props.todo.responsible}</td>
-        <td>{props.todo.priority}</td>
-        <td>{props.todo.completed ? 'Yes' : 'No'}</td>
-        <td>
-            <Link to={"/edit/" + props.todo._id}> Edit </Link>|
-            <Link to={"/edit/" + props.todo._id}> Delete </Link>
-        </td>
-    </tr>
-);
+const Todo = props => {
+
+    const buttonDeleteStyle = {
+        border: 0,
+        background: 'transparent',
+        color: '#007bff'
+    };
+
+    const onClickDeleteTodo = (event) => {
+        console.log(`delete ${props.todo._id}`);
+    };
+
+    return (
+        <tr>
+            <td>{props.todo.description}</td>
+            <td>{props.todo.responsible}</td>
+            <td>{props.todo.priority}</td>
+            <td>{props.todo.completed ? 'Yes' : 'No'}</td>
+            <td>
+                <Link to={"/edit/" + props.todo._id}> Edit </Link>|
+                <button style={buttonDeleteStyle} onClick={onClickDeleteTodo}> Delete </button>
+            </td>
+        </tr>
+    )
+};
 
 export default class TodosList extends Component {
     
