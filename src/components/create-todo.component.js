@@ -67,8 +67,8 @@ export default class CreateTodo extends Component {
 
         // post data to server
         if(!this.edit) {
-            console.log(`${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/todos/add`);
-            axios.post(`http://localhost:4000/todos/add`, newTodo)
+            console.log(`${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/todos/`);
+            axios.post(`http://localhost:4000/todos/`, newTodo)
                 .then(response => console.log(response.data));
 
             this.setState({
@@ -78,7 +78,7 @@ export default class CreateTodo extends Component {
                 completed: false
             });
         } else {
-            axios.post(`http://localhost:4000/todos/update/${this.state.id}`, newTodo)
+            axios.put(`http://localhost:4000/todos/${this.state.id}`, newTodo)
             .then(response => console.log(response.data));
         }
     }
