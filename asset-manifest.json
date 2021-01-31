@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/mern-todo-app/static/css/main.7d180cbf.chunk.css",
+    "main.js": "/mern-todo-app/static/js/main.78cd1b81.chunk.js",
+    "main.js.map": "/mern-todo-app/static/js/main.78cd1b81.chunk.js.map",
+    "runtime-main.js": "/mern-todo-app/static/js/runtime-main.f9d9a1a9.js",
+    "runtime-main.js.map": "/mern-todo-app/static/js/runtime-main.f9d9a1a9.js.map",
+    "static/css/2.ae9f1eb3.chunk.css": "/mern-todo-app/static/css/2.ae9f1eb3.chunk.css",
+    "static/js/2.3ee160b7.chunk.js": "/mern-todo-app/static/js/2.3ee160b7.chunk.js",
+    "static/js/2.3ee160b7.chunk.js.map": "/mern-todo-app/static/js/2.3ee160b7.chunk.js.map",
+    "static/js/3.4e3fa015.chunk.js": "/mern-todo-app/static/js/3.4e3fa015.chunk.js",
+    "static/js/3.4e3fa015.chunk.js.map": "/mern-todo-app/static/js/3.4e3fa015.chunk.js.map",
+    "index.html": "/mern-todo-app/index.html",
+    "static/css/2.ae9f1eb3.chunk.css.map": "/mern-todo-app/static/css/2.ae9f1eb3.chunk.css.map",
+    "static/css/main.7d180cbf.chunk.css.map": "/mern-todo-app/static/css/main.7d180cbf.chunk.css.map",
+    "static/js/2.3ee160b7.chunk.js.LICENSE.txt": "/mern-todo-app/static/js/2.3ee160b7.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f9d9a1a9.js",
+    "static/css/2.ae9f1eb3.chunk.css",
+    "static/js/2.3ee160b7.chunk.js",
+    "static/css/main.7d180cbf.chunk.css",
+    "static/js/main.78cd1b81.chunk.js"
+  ]
+}
